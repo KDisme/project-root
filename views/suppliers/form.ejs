@@ -1,0 +1,27 @@
+
+<%- include('../layout') %>
+<div class="container mt-4" style="max-width: 500px;">
+	<h3 class="mb-4"><%= typeof supplier !== 'undefined' ? 'Sửa nhà cung cấp' : 'Thêm nhà cung cấp' %></h3>
+	<% if (typeof error !== 'undefined') { %>
+		<div class="alert alert-danger"><%= error %></div>
+	<% } %>
+	<form method="post" action="<%= typeof supplier !== 'undefined' ? '/suppliers/' + supplier._id + '/edit' : '/suppliers/create' %>">
+		<div class="mb-3">
+			<label class="form-label">Tên nhà cung cấp</label>
+			<input type="text" name="name" class="form-control" required value="<%= supplier ? supplier.name : '' %>">
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Địa chỉ</label>
+			<input type="text" name="address" class="form-control" required value="<%= supplier ? supplier.address : '' %>">
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Số điện thoại</label>
+			<input type="text" name="phone" class="form-control" required value="<%= supplier ? supplier.phone : '' %>">
+		</div>
+		<button type="submit" class="btn btn-primary w-100"><%= typeof supplier !== 'undefined' ? 'Cập nhật' : 'Thêm mới' %></button>
+		<div class="mt-3 text-center">
+			<a href="/suppliers">Quay lại danh sách</a>
+		</div>
+	</form>
+</div>
+

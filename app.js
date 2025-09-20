@@ -1,0 +1,36 @@
+
+const express = require('express');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const path = require('path');
+const app = express();
+
+mongoose.connect('mongodb://localhost:27017/qlsanpham', { useNewUrlParser: true, useUnifiedTopology: true });
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+	secret: 'secret-key',
+	resave: false,
+	saveUninitialized: false,
+	cookie: { maxAge: 24 * 60 * 60 * 1000 }
+}));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Truyền session vào tất cả view
+app.use((req, res, next) => {
+	res.locals.session = req.session;
+	next();
+});
+
+app.use('/', require('./routes/index'));
+app.use('/', require('./routes/auth'));
+app.use('/products', require('./routes/products'));
+app.use('/suppliers', require('./routes/suppliers'));
+
+app.listen(3000, () => {
+	console.log('Server đang chạy tại http://localhost:3000');
+});
+

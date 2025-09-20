@@ -1,7 +1,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const session = require('express-session');
+const session = require('./config/session');
 const path = require('path');
 const app = express();
 
@@ -9,12 +9,7 @@ mongoose.connect('mongodb://localhost:27017/qlsanpham', { useNewUrlParser: true,
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-	secret: 'secret-key',
-	resave: false,
-	saveUninitialized: false,
-	cookie: { maxAge: 24 * 60 * 60 * 1000 }
-}));
+app.use(session);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

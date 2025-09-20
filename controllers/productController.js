@@ -1,3 +1,8 @@
+exports.detail = async (req, res) => {
+	const product = await Product.findById(req.params.id).populate('supplier');
+	if (!product) return res.status(404).send('Không tìm thấy sản phẩm');
+	res.render('products/detail', { product });
+};
 const Product = require('../models/Product');
 const Supplier = require('../models/Supplier');
 

@@ -1,3 +1,8 @@
+exports.detail = async (req, res) => {
+	const supplier = await Supplier.findById(req.params.id);
+	if (!supplier) return res.status(404).send('Không tìm thấy nhà cung cấp');
+	res.render('suppliers/detail', { supplier });
+};
 const Supplier = require('../models/Supplier');
 
 exports.list = async (req, res) => {

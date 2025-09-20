@@ -6,6 +6,7 @@ const auth = require('../middleware/auth');
 router.get('/', supplierController.list);
 router.get('/create', auth, supplierController.createForm);
 router.post('/create', auth, supplierController.create);
+router.get('/:id', supplierController.detail);
 router.get('/:id/edit', auth, supplierController.editForm);
 router.post('/:id/edit', auth, supplierController.update);
 router.post('/:id/delete', auth, supplierController.delete);

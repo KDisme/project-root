@@ -1,0 +1,13 @@
+<%- include('../layout') %>
+<div class="container mt-4" style="max-width: 600px;">
+    <h3 class="mb-4">Chi tiết sản phẩm</h3>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text">Giá: <%= product.price.toLocaleString() %> VNĐ</p>
+            <p class="card-text">Số lượng: <%= product.quantity %></p>
+            <p class="card-text">Nhà cung cấp: <%= product.supplier ? product.supplier.name : '' %></p>
+            <a href="/products" class="btn btn-secondary">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>

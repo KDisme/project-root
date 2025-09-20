@@ -1,0 +1,12 @@
+<%- include('../layout') %>
+<div class="container mt-4" style="max-width: 600px;">
+    <h3 class="mb-4">Chi tiết nhà cung cấp</h3>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><%= supplier.name %></h5>
+            <p class="card-text">Địa chỉ: <%= supplier.address %></p>
+            <p class="card-text">Số điện thoại: <%= supplier.phone %></p>
+            <a href="/suppliers" class="btn btn-secondary">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>

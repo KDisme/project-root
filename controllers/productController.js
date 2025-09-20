@@ -13,7 +13,7 @@ exports.list = async (req, res) => {
 
 exports.createForm = async (req, res) => {
 	const suppliers = await Supplier.find();
-	res.render('products/form', { suppliers });
+res.render('products/form', { product: null, suppliers });
 };
 
 exports.create = async (req, res) => {

@@ -5,7 +5,7 @@
 	<% if (typeof error !== 'undefined') { %>
 		<div class="alert alert-danger"><%= error %></div>
 	<% } %>
-	<form method="post" action="<%= typeof product !== 'undefined' ? '/products/' + product._id + '/edit' : '/products/create' %>">
+	<form method="post" action="<%= product && product._id ? ('/products/' + product._id + '/edit') : '/products/create' %>">
 		<div class="mb-3">
 			<label class="form-label">Tên sản phẩm</label>
 			<input type="text" name="name" class="form-control" required value="<%= product ? product.name : '' %>">

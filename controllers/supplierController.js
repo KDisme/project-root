@@ -6,7 +6,7 @@ exports.list = async (req, res) => {
 };
 
 exports.createForm = (req, res) => {
-	res.render('suppliers/form');
+	res.render('suppliers/form', { supplier: {} });
 };
 
 exports.create = async (req, res) => {
@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
 		await Supplier.create({ name, address, phone });
 		res.redirect('/suppliers');
 	} catch (err) {
-		res.render('suppliers/form', { error: 'Thêm nhà cung cấp thất bại!' });
+		res.render('suppliers/form', { error: 'Thêm nhà cung cấp thất bại!', supplier: {} });
 	}
 };
 
@@ -23,14 +23,13 @@ exports.editForm = async (req, res) => {
 	const supplier = await Supplier.findById(req.params.id);
 	res.render('suppliers/form', { supplier });
 };
-
 exports.update = async (req, res) => {
 	const { name, address, phone } = req.body;
 	try {
 		await Supplier.findByIdAndUpdate(req.params.id, { name, address, phone });
 		res.redirect('/suppliers');
 	} catch (err) {
-		res.render('suppliers/form', { error: 'Cập nhật nhà cung cấp thất bại!' });
+		res.render('suppliers/form', { error: 'Cập nhật nhà cung cấp thất bại!', supplier: {} });
 	}
 };
 
